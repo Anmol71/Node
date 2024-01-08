@@ -19,5 +19,9 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  rules: {},
+  rules: {
+    // Note: you must disable the base rule as it can report incorrect errors
+    semi: "on",
+    "@typescript-eslint/semi": "error",
+  },
 };
