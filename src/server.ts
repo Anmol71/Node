@@ -1,12 +1,13 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/semi */
 import express from 'express';
-import path from 'path';
-// import { db } from './models'
-const app = express();
+const app: Application = express();
+import { Application } from "express";
+import {router as usersRouter} from './routes/user.routes';
 
-app.get('/', (req, res) => {
-  res.send('Home Page')
-})
 
-app.listen(8000, () => { console.log('Server started at port 8000') })
+app.use(express.json());
+
+app.use('/users', usersRouter);
+
+app.listen(5000, () => {
+  console.log("Server Started on port 5000");
+});
