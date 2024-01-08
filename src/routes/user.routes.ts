@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { readData } from "../models/index";
+import { readData, readSpecificData, insertRecord } from "../controller/userController";
 
 export const router = Router();
 
@@ -8,31 +8,26 @@ export interface User {
   name: string;
   age: number;
 }
-const users: User[] = [];
-
 router.get("", async (req: Request, res: Response) => {
-  const data = await readData();  
+  const data = await readData();
   // console.log(req.body);
-  res.send("Hello ");
- res.json(data)
- console.log("Data"+data)
-  
+  res.send(data);
+  console.log("Data" + data);
 });
 
-router.get("/:id", (req, res) => {
-  const userID = parseInt(req.params.id);
-  const user = users.find((user: User) => user.id === userID);
-  console.log(userID, user, users);
-  res.json(user);
+router.get("/:id", async (req, res) => {
+  const data = await readSpecificData(Number(req.params.id))
+  res.send(data);
+  console.log(req.params.id)
 });
 
-router.post("", (req: Request, res: Response) => {
-  const userData = req.body;
-  users.push(...userData);
-  users.push(userData[1]);
-  console.log(userData[1]);
-
-  res.send(users);
+router.post("", async (req: Request, res: Response) => {
+  const name = req.body.name;
+  const age = req.body.age;
+  console.log(req.body)
+  const data = await insertRecord(name, age);
+  res.send(data);
+  console.log("name" + name);
 });
 
 router.put("", (req: Request, res: Response) => {

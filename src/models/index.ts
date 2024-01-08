@@ -1,3 +1,4 @@
+import { INTEGER } from "sequelize";
 import { Sequelize, DataTypes, Model } from "sequelize";
 const dbConfig = {
   host: "localhost",
@@ -32,19 +33,9 @@ User.init(
   }
 );
 
-const user = new User();
-// user.id; //
-
-sequelize
-  .authenticate()
-  .then(() => console.log("Connection successfull!"))
-  .catch((err) => console.log(err));
-
-export async function readData() {
-  try {
-    const res = await User.findAll();
-    console.log(res);
-  } catch (error) {
-    console.error("Failed to retrieve data : ", error);
-  }
+export  function authenticate() {
+ return sequelize
+    .authenticate()
+    
 }
+
