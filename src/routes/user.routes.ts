@@ -5,6 +5,8 @@ import {
   insertRecord,
   insertMultipleRecords,
   updateRecord,
+  deleteRecord,
+  deleteAllRecord
 } from "../controller/userController";
 import { NUMBER } from "sequelize";
 
@@ -33,7 +35,7 @@ router.post("", async (req: Request, res: Response) => {
   const age = req.body.age;
   console.log(req.body);
   const data = await insertRecord(name, age);
-  const users = [{name: name, }]
+  const users = [{ name: name }];
   // const multipleData = await insertMultipleRecords(users)
   res.send(data);
   console.log("name" + name);
@@ -44,11 +46,18 @@ router.put("/:id", async (req: Request, res: Response) => {
   const name = req.body.name;
   const age = req.body.age;
   console.log(req.body);
-  console.log(id+"ID")
+  console.log(id + "ID");
   const data = await updateRecord(name, age, id);
   res.send(data);
 });
 
-router.delete("", (req: Request, res: Response) => {
-  res.send("Deleting");
+router.delete("/:id", async (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+  const del = await deleteRecord(id);
+  res.send("Deleted Succesfully!"+del);
 });
+
+router.delete("",async(req:Request, res: Response) => {
+  const del = await deleteAllRecord();
+  res.send("All the data in database has been removed"+del);
+})

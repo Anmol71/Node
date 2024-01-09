@@ -53,3 +53,12 @@ export async function deleteRecord(id: number) {
     console.log(`Failed to delete record with ${id} id`);
   }
 }
+
+export async function deleteAllRecord(){
+  try{
+    return User.truncate();
+  }
+  catch(error){
+    console.log("Failed to delete records.")
+  }
+}
