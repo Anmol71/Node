@@ -9,17 +9,6 @@ const dbConfig = {
 
 const sequelize = new Sequelize({ ...dbConfig, dialect: "mysql" });
 
-// const User = sequelize.define(
-//   "students", {
-//   name: { type: DataTypes.STRING },
-//   age: { type: DataTypes.INTEGER }
-
-// },
-//   {
-//     freezeTableName: true,
-//   }
-// );
-
 export class User extends Model {}
 
 User.init(
@@ -33,9 +22,6 @@ User.init(
   }
 );
 
-export  function authenticate() {
- return sequelize
-    .authenticate()
-    
+export function authenticate() {
+  return sequelize.authenticate();
 }
-
