@@ -7,7 +7,13 @@ export async function readData() {
     console.error("Failed to retrieve data : ", error);
   }
 }
-
+interface IUser {
+  name: string;
+  email: string;
+  password: number;
+  age: number;
+  address: string;
+}
 export async function readSpecificData(id: number) {
   try {
     return User.findOne({
@@ -20,25 +26,28 @@ export async function readSpecificData(id: number) {
   }
 }
 
-export async function insertRecord(name: string, age: number) {
+export async function insertRecord(user: IUser) {
+  console.log(user);
   try {
-    return User.build({ name: name, age: age }).save();
+    return User.build()
+      .set({ ...user })
+      .save();
   } catch (err) {
     console.log("Unable to create records");
   }
 }
 
-export async function insertMultipleRecords(users: [{}]) {
+export async function insertMultipleRecords(users: IUser[]) {
   try {
-    return User.bulkBuild(users);
+    // return User.bulkBuild(users);
   } catch (error) {
     console.log("Failed to insert multiple records");
   }
 }
 
-export async function updateRecord(name: string, age: number, id: number) {
+export async function updateRecord(users: IUser, id: number) {
   try {
-    return User.update({ name: name, age: age }, { where: { id: id } });
+    return User.update({ ...users }, { where: { id: id } });
   } catch (error) {
     console.log("Failed to update record!" + error);
   }
@@ -54,11 +63,10 @@ export async function deleteRecord(id: number) {
   }
 }
 
-export async function deleteAllRecord(){
-  try{
+export async function deleteAllRecord() {
+  try {
     return User.truncate();
-  }
-  catch(error){
-    console.log("Failed to delete records.")
+  } catch (error) {
+    console.log("Failed to delete records.");
   }
 }
