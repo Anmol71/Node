@@ -1,4 +1,3 @@
-import { INTEGER } from "sequelize";
 import { Sequelize, DataTypes, Model } from "sequelize";
 const dbConfig = {
   host: "localhost",
@@ -12,8 +11,6 @@ export const sequelize = new Sequelize({
   dialect: "mysql",
   logging: true,
 });
-
-export class User extends Model {}
 
 export function authenticate() {
   return sequelize.authenticate();

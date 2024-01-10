@@ -9,7 +9,7 @@ export const up: Migration = async ({ context: sequelize }) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -22,14 +22,7 @@ export const up: Migration = async ({ context: sequelize }) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    age: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    address: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+
     createdAt: {
       type: DataTypes.DATE,
       defaultValue: sequelize.literal("CURRENT_TIMESTAMP()"),

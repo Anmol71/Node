@@ -8,7 +8,6 @@ import {
   deleteRecord,
   deleteAllRecord,
 } from "../controller/userController";
-import { NUMBER } from "sequelize";
 
 export const router = Router();
 
@@ -26,28 +25,25 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("", async (req: Request, res: Response) => {
-  const name = req.body.name;
+  const username = req.body.username;
   const age = req.body.age;
   const email = req.body.email;
   const password = req.body.password;
   const address = req.body.address;
-  console.log(req.body);
-  console.log("name", name);
-  const data = await insertRecord({ name, age, email, password, address });
+  console.log(req.body + "Body");
+  const data = await insertRecord({ username, email, password });
   // const multipleData = await insertMultipleRecords(users)
   res.send(data);
 });
 
 router.put("/:id", async (req: Request, res: Response) => {
   const id = Number(req.params.id);
-  const name = req.body.name;
-  const age = req.body.age;
+  const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
-  const address = req.body.address;
   console.log(req.body);
   console.log(id + "ID");
-  const data = await updateRecord({ name, email, password, address, age }, id);
+  const data = await updateRecord({ username, email, password }, id);
   res.send(data);
 });
 

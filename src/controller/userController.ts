@@ -1,5 +1,5 @@
 import { where } from "sequelize";
-import { User } from "../models";
+import { User } from "../models/user.model";
 export async function readData() {
   try {
     return User.findAll();
@@ -8,11 +8,9 @@ export async function readData() {
   }
 }
 interface IUser {
-  name: string;
+  username: string;
   email: string;
-  password: number;
-  age: number;
-  address: string;
+  password: string;
 }
 export async function readSpecificData(id: number) {
   try {

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { User } from "../models/index";
+import { User } from "../models/user.model";
 
 export async function Register(req: Request, res: Response) {
   // get required variables from request body
@@ -26,7 +26,7 @@ export async function Register(req: Request, res: Response) {
     // const { role, ...user_data } = savedUser._doc;
     res.status(200).json({
       status: "success",
-    //   data: [user_data],
+      //   data: [user_data],
       message:
         "Thank you for registering with us. Your account has been successfully created.",
     });
