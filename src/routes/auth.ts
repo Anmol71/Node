@@ -3,7 +3,7 @@ import { Register } from "../controller/auth";
 import Validate from "../middleware/validate";
 import { check } from "express-validator";
 
-const router = express.Router();
+export const router = express.Router();
 
 // Register route -- POST request
 router.post(
@@ -25,3 +25,4 @@ router.post(
     Validate,
     Register
 );
+export default router;

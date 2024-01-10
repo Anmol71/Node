@@ -1,7 +1,7 @@
 // import { User } from "./index";
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "./index";
-import { UserProfile } from "./user_profile.model";
+import{ useBcrypt} from 'sequelize-bcrypt';
 export class User extends Model {}
 User.init(
   {
@@ -22,4 +22,5 @@ User.init(
     tableName: "users",
   }
 );
+useBcrypt(User,{})
 // User.UserProfile=User.hasOne(User)

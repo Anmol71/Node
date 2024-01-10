@@ -2,11 +2,13 @@ import express from "express";
 const app: Application = express();
 import { Application } from "express";
 import { router as usersRouter } from "./routes/user.routes";
+import {router as register } from "./routes/auth"
 import { authenticate } from "./models";
 
 app.use(express.json());
 
 app.use("/users", usersRouter);
+app.use("/users",register); 
 
 const initApp = async () => {
   console.log("Testing the database connection..");
